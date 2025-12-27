@@ -185,6 +185,25 @@ jobs:
         gzip build-android-arm64/subprojects/frida-core/lib/gadget/frida-gadget.so
         gzip build-android-x86/subprojects/frida-core/lib/gadget/frida-gadget.so
         gzip build-android-x86_64/subprojects/frida-core/lib/gadget/frida-gadget.so
+
+    - name: Upload compiled artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: strongR-frida-android-${{ needs.check_version.outputs.FRIDA_VERSION }}
+        path: |
+          build-android-arm/subprojects/frida-core/server/frida-server.gz
+          build-android-arm64/subprojects/frida-core/server/frida-server.gz
+          build-android-x86/subprojects/frida-core/server/frida-server.gz
+          build-android-x86_64/subprojects/frida-core/server/frida-server.gz
+          build-android-arm/subprojects/frida-core/inject/frida-inject.gz
+          build-android-arm64/subprojects/frida-core/inject/frida-inject.gz
+          build-android-x86/subprojects/frida-core/inject/frida-inject.gz
+          build-android-x86_64/subprojects/frida-core/inject/frida-inject.gz
+          build-android-arm/subprojects/frida-core/lib/gadget/frida-gadget.so.gz
+          build-android-arm64/subprojects/frida-core/lib/gadget/frida-gadget.so.gz
+          build-android-x86/subprojects/frida-core/lib/gadget/frida-gadget.so.gz
+          build-android-x86_64/subprojects/frida-core/lib/gadget/frida-gadget.so.gz
+        retention-days: 90
         
         
     - name: Upload android arm frida-server for strongR-frida
